@@ -1,0 +1,112 @@
+<?PHP
+    include 'config.php';
+	include 'engine/functions.php';
+    require('engine/version/global_functions.php');
+    require('engine/version/core.php');
+    require_once("engine/PHPPaging.lib.php");
+    require ("language_config.php"); 
+    $pagina = new PHPPaging;
+
+$key = "cu4n70_m4s_c0mpl3j0_m3j05";
+$core['version'] = crypt_it($engine,'','1'); 
+?>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title><?=$myservername;?> - <?php echo basename($_GET['page_id']); ?></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link rel="stylesheet" href="css/bootstrap.css" media="screen">
+    <link rel="stylesheet" href="css/custom.min.css">   
+    <link rel="icon" type="image/x-icon" href="images/ClashFavicon.ico">
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="../bower_components/html5shiv/dist/html5shiv.js"></script>
+      <script src="../bower_components/respond/dest/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body onLoad="ini();">
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.php"><img src="images/s.png" alt=""  border="0"></a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
+      <ul class="nav navbar-nav">
+        <li><a href="index.php?page_id=ranking">Ranking</a></li>
+        <li><a href="index.php?page_id=guilds"><?php echo text_menu_guilds; ?></a></li>
+         <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Search <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="index.php?page_id=searchPlayer">Search Players</a></li>
+            <li><a href="index.php?page_id=searchClan">Search Clans</a></li>
+          </ul>
+        </li>
+        <li><a href="index.php?page_id=downloads">Descargas</a></li>
+        <li><a href="index.php?page_id=blacklist"><?php echo text_menu_blacklist; ?></a></li>
+        <li><a href="index.php?page_id=statistics"><?php echo text_menu_statistics; ?></a></li>
+        <li><a href="index.php?page_id=playersonline"><?php echo text_menu_conected; ?></a></li>
+        <li><a href="index.php?page_id=gamemasters"><?php echo text_menu_gamemasters; ?></a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+             <li class="dropdown">
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Language<span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="index.php?lang=en" title="English">English</a></li>
+            <li><a href="index.php?lang=es" title="Spanish">Spanish</a></li>
+            <li><a href="index.php?lang=br" title="Português">Português</a></li>
+        </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+      <div class="container">
+<div class="jumbotron">
+<?php
+if(empty($_GET['page_id'])) { 
+	include("pages_modules/news.php"); 
+} else {
+	switch ($_GET['dir']) {
+    case 'ucp':
+        $dir = "pages_modules/adminnews/".$_GET['page_id'].".php";
+        $file = "pages_modules/adminnews/".basename($_GET['page_id']).".php";
+        break;
+    default:
+		$dir = "pages_modules/".$_GET['page_id'].".php";
+		$file = "pages_modules/".basename($_GET['page_id']).".php";
+        break;
+	}
+	if(file_exists($dir)) { 
+		include($file); 
+	} else { 
+		echo '<table border=0 cellpadding=0 cellspacing=0> 
+		<tr> 
+		<td width=85%>'.text_site_module.'</td> 
+		</tr> 
+		</table>'; 
+	} 
+} 
+?></p>
+</div>
+</div>
+<div align="center" class="panel-footer">
+<?PHP
+echo '<b>COCWeb™ Version '. $core['version'] .'</b>'; ?>
+</br>
+<?php echo text_site_copyrigth; ?> <?=$myservername;?><br />Code with love by JorgeMoralesMV</div>
+    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="css/bootstrap.min.js"></script>
+    <script src="css/custom.js"></script>
+  <script type="text/javascript">/* <![CDATA[ */(function(d,s,a,i,j,r,l,m,t){try{l=d.getElementsByTagName('a');t=d.createElement('textarea');for(i=0;l.length-i;i++){try{a=l[i].href;s=a.indexOf('/cdn-cgi/l/email-protection');m=a.length;if(a&&s>-1&&m>28){j=28+s;s='';if(j<m){r='0x'+a.substr(j,2)|0;for(j+=2;j<m&&a.charAt(j)!='X';j+=2)s+='%'+('0'+('0x'+a.substr(j,2)^r).toString(16)).slice(-2);j++;s=decodeURIComponent(s)+a.substr(j,m-j)}t.innerHTML=s.replace(/</g,'&lt;').replace(/>/g,'&gt;');l[i].href='mailto:'+t.value}}catch(e){}}}catch(e){}})(document);/* ]]> */</script>
+  </body>
+</html>
