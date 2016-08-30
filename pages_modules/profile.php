@@ -47,10 +47,13 @@ foreach($players as $player){
 	$headerprivileges = $player["AccountPrivileges"];
 	$player_region = $player['avatarObj']['region'];
 
-  $someJSON = $player["avatar"];
-  // Convert JSON string to Array
-  $someArray = json_decode($someJSON, true);
+$someJSON = $player["avatar"];
+// Convert JSON string to Array
+$someArray = json_decode($someJSON, true);
   $gold = $someArray["resources"][0]["value"];
+  $elixir = $someArray["resources"][1]["value"];
+  $darkelixir = $someArray["resources"][2]["value"];
+
 }
 //townhall
 if($th == 1){ $th ='<img src="images/townhall/'.$th.'.png" alt="1" width="148" height="157"><FONT SIZE=1>'.$th.'</font>';
@@ -408,7 +411,7 @@ echo '
     <td align="center"><div class="profiletitle">Status:</div></td>
     <td align="center"><div class="profileresult">'.$player["AccountStatus"].'</div></td>
     <td align="center"><div class="profiletitle">'.text_profile_latestupdate.'</div></td>
-    <td align="center"><div class="profileresult">'.$player["LastUpdateTime"].' '.$gold.'</div></td>
+    <td align="center"><div class="profileresult">'.$player["LastUpdateTime"].'</div></td>
 	<td></td>
   </tr>
   </table></table></div>'; ?>
@@ -420,7 +423,25 @@ echo '
 </textarea> 
      <input class="btn btn-success" type="submit" name="submit" value="View Village"> 
 </form>
-    </div>
+    <a href="#" class="btn btn-primary" id="open">View Trops</a>
+</div>
+    <tr>
+    <td align="left" valign="center"><br />
+    <ul class="list-group">
+  <li class="list-group-item">
+    <span class="badge"><?=$gold;?></span>
+    Gold
+  </li>
+  <li class="list-group-item">
+    <span class="badge"><?=$elixir;?></span>
+    Elixir
+  </li>
+  <li class="list-group-item">
+    <span class="badge"><?=$darkelixir;?></span>
+    Dark Elixir
+  </li>
+</ul></td>
+  </tr>
 	<?php echo '
   <tr>
     <td align="center" valign="center"><br />
@@ -430,7 +451,78 @@ echo '
 	<input type="text" size="50" class="form-control" id="focusedInput" readonly="" value="'.$site.'signature.php?id='.$player["PlayerId"].'"></div>
 </div></td>
   </tr>';
-	}
 ?>
 </table>
+<?php
+$someJSON = $player["avatar"];
+// Convert JSON string to Array
+$someArray = json_decode($someJSON, true);
+  $BarbarianIMG = $someArray["units"][0]["global_id"];
+  $ArcherIMG = $someArray["units"][1]["global_id"];
+  $GoblinIMG = $someArray["units"][2]["global_id"];
+  $GiantIMG = $someArray["units"][3]["global_id"];
+  $WallBreakerIMG = $someArray["units"][4]["global_id"];
+  $BalloonIMG = $someArray["units"][5]["global_id"];
+  $WizardIMG = $someArray["units"][6]["global_id"];
+  $HealerIMG = $someArray["units"][7]["global_id"];
+  $DragonIMG = $someArray["units"][8]["global_id"];
+  $PEKKAIMG = $someArray["units"][9]["global_id"];
+  $MinionIMG = $someArray["units"][10]["global_id"];
+  $HogRiderIMG = $someArray["units"][11]["global_id"];
+  $ValkyrideIMG = $someArray["units"][12]["global_id"];
+  $GolemIMG = $someArray["units"][13]["global_id"];
+  $GolemSecondaryIMG = $someArray["units"][14]["global_id"];
+  $witchIMG = $someArray["units"][15]["global_id"];
+  $AirDefenceSeekerIMG = $someArray["units"][16]["global_id"];
+  $LavaHoundIMG = $someArray["units"][17]["global_id"];
+  $TrapSkeletonGroundIMG = $someArray["units"][18]["global_id"];
+  $GargoyleTrapIMG = $someArray["units"][19]["global_id"];
+  $TrapSkeletonAirIMG = $someArray["units"][20]["global_id"];
+  $Prototype_1IMG = $someArray["units"][21]["global_id"];
+  $Prototype_2IMG = $someArray["units"][22]["global_id"];
+  $Prototype_3IMG = $someArray["units"][23]["global_id"];
+  $Prototype_4IMG = $someArray["units"][24]["global_id"];
+  
+if($BarbarianIMG == 4000000){ $BarbarianIMG ='<img src="images/trops/Barbarian_info.png" alt="10" width="22" height="22">';}
+if($LavaHoundIMG == 4000022){ $LavaHoundIMG ='<img src="images/trops/Lava_Hound_info.png" alt="10" width="22" height="22">';}
+
+  
+  //Number of trops
+  $Barbarian = $someArray["units"][0]["value"];//
+  $Archer = $someArray["units"][1]["value"];
+  $Goblin = $someArray["units"][2]["value"];
+  $Giant = $someArray["units"][3]["value"];
+  $WallBreaker = $someArray["units"][4]["value"];
+  $Balloon = $someArray["units"][5]["value"];
+  $Wizard = $someArray["units"][6]["value"];
+  $Healer = $someArray["units"][7]["value"];
+  $Dragon = $someArray["units"][8]["value"];
+  $PEKKA = $someArray["units"][9]["value"];
+  $Minion = $someArray["units"][10]["value"];
+  $HogRider = $someArray["units"][11]["value"];
+  $Valkyride = $someArray["units"][12]["value"];
+  $Golem = $someArray["units"][13]["value"];
+  $GolemSecondary = $someArray["units"][14]["value"];
+  $witch = $someArray["units"][15]["value"];
+  $AirDefenceSeeker = $someArray["units"][16]["value"];
+  $Prototype_1 = $someArray["units"][17]["value"];
+  $TrapSkeletonGround = $someArray["units"][18]["value"];
+  $GargoyleTrap = $someArray["units"][19]["value"];
+  $TrapSkeletonAir = $someArray["units"][20]["value"];
+  $LavaHound = $someArray["units"][21]["value"];//
+  $Prototype_2 = $someArray["units"][22]["value"];
+  $Prototype_3 = $someArray["units"][23]["value"];
+  $Prototype_4 = $someArray["units"][24]["value"];
+  
+echo '
 </div>
+<div id="popup" style="display: none;">
+    <div class="content-popup">
+        <div class="close"><a href="#" id="close"><img src="images/close.png"/></a></div>
+        <div>
+        	<h2>Troops latest created</h2>
+            <p>'.$BarbarianIMG.' '.$Barbarian.'</p>
+            <p>'.$LavaHoundIMG.' '.$Archer.'</p>
+        </div>
+    </div>
+</div>'; }?>

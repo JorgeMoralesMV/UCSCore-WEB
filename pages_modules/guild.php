@@ -573,19 +573,13 @@ if($allioriginbadge == 32000258){ $allioriginbadge ='<img src="https://clashofcl
 if($allioriginbadge == 32000259){ $allioriginbadge ='<img src="https://clashofclans.com/img/flags/Zambia.png" alt="10" width="22" height="22">';}
 if($allioriginbadge == 32000260){ $allioriginbadge ='<img src="https://clashofclans.com/img/flags/Zimbabwe.png" alt="10" width="22" height="22">';}
 
-  $someJSON = $clan["data"];
-  // Convert JSON string to Array
-  $someArray = json_decode($someJSON, true);
-    $member =  $someArray["members"][0]['avatar_id'];
-      $rols =  $someArray["members"][0]['role'];
-
 echo '
 <div class="headerprofileclans">
 <table class="themain" align="center" cellpadding="2" cellspacing="0" width="44%"><tbody><tr>
 	  <td>
 	<table width="519" class="themain" border="0" align="center" cellpadding="1" cellspacing="1">
   <tr class="trhover">
-<td align="center" height="102" colspan="4"><div class="separator"></div><img src="../images/clan.jpg" alt="" width="100" height="100" border="0"></td>
+<td align="center" height="102" colspan="4"><div class="separator"></div><img src="../images/clan.jpg" alt="" width="100" height="100" border="0">'.$allilvl.'</td>
     </tr>
 	  <tr class="trhover">
     <td colspan="4" align="center"><div class="separator"></div><div class="headernameprofileclan">'.$clanname.'</div></td>
@@ -624,15 +618,28 @@ echo '
     <td align="left"><div class="profiletitle">Type:</div></td>
     <td align="left"><div class="profileresult">'.$alliance_typ.'</div></td>
     <td align="center"><div class="profiletitle">Required Score:</div></td>
-    <td align="center"><div class="profileresult">'.$reqsc.' '.$allilvl.'</div></td>
+    <td align="center"><div class="profileresult">'.$reqsc.'</div></td>
     </tr>
   </table></table>
 </div>
+';} ?>
     <div class="footerprofileclan">
 <table class="table table-striped table-hover" align="center" cellpadding="2" cellspacing="0" width="43%">
   <tr>
     <td colspan="3" align="center" class="topp2">Members</td>
   </tr>
+<?php
+  $someJSON = $clan["data"];
+  // Convert JSON string to Array
+  $someArray = json_decode($someJSON, true);
+    $member =  $someArray["members"][3]['avatar_id'];
+      $rols =  $someArray["members"][3]['role'];
+	  
+if($rols == 0){ $rols ='Normal Member';}
+if($rols == 1){ $rols ='Normal Member';}
+if($rols == 2){ $rols ='Leader';}
+
+echo '
   <tr>
     <td width="61" align="center" class="topp2"><strong>#</strong></td>
     <td width="326" class="topp2"><strong>Name</strong></td>
@@ -643,5 +650,6 @@ echo '
     <td>'.$member.'</td>
     <td>'.$rols.'</td>
   </tr>
+'; ?>
 </table>
-</div>';} ?>
+</div>
