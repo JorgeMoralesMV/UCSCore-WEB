@@ -46,18 +46,12 @@ foreach($players as $player){
 	$exp = $player['avatarObj']['experience'];
 	$headerprivileges = $player["AccountPrivileges"];
 	$player_region = $player['avatarObj']['region'];
+
+  $someJSON = $player["avatar"];
+  // Convert JSON string to Array
+  $someArray = json_decode($someJSON, true);
+  $gold = $someArray["resources"][0]["value"];
 }
-$sql3=mysql_query("SELECT * FROM player");
-        while($row = mysql_fetch_array($sql3)){ 
-		
-	$avatar = $row["Avatar"];
-	$avatarObj = json_decode($row["Avatar"], true);
-	
-	}
-	
-	foreach($avatarObj['resources'] as $item) {
-		$recurso = $item['value'];
-	}
 //townhall
 if($th == 1){ $th ='<img src="images/townhall/'.$th.'.png" alt="1" width="148" height="157"><FONT SIZE=1>'.$th.'</font>';
 }
@@ -414,7 +408,7 @@ echo '
     <td align="center"><div class="profiletitle">Status:</div></td>
     <td align="center"><div class="profileresult">'.$player["AccountStatus"].'</div></td>
     <td align="center"><div class="profiletitle">'.text_profile_latestupdate.'</div></td>
-    <td align="center"><div class="profileresult">'.$player["LastUpdateTime"].' '.$recurso.'</div></td>
+    <td align="center"><div class="profileresult">'.$player["LastUpdateTime"].' '.$gold.'</div></td>
 	<td></td>
   </tr>
   </table></table></div>'; ?>

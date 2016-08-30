@@ -573,17 +573,12 @@ if($allioriginbadge == 32000258){ $allioriginbadge ='<img src="https://clashofcl
 if($allioriginbadge == 32000259){ $allioriginbadge ='<img src="https://clashofclans.com/img/flags/Zambia.png" alt="10" width="22" height="22">';}
 if($allioriginbadge == 32000260){ $allioriginbadge ='<img src="https://clashofclans.com/img/flags/Zimbabwe.png" alt="10" width="22" height="22">';}
 
-$sql3=mysql_query("SELECT * FROM clan");
-        while($row = mysql_fetch_array($sql3)){ 
-		
-	$data = $row["Data"];
-	$dataObj = json_decode($row["Data"], true);
-		}
-		
-	foreach($dataObj['members'] as $item) {
-    $recurso =  $item['avatar_id'];
-	$recurso2 =  $item['role'];
-	}
+  $someJSON = $clan["data"];
+  // Convert JSON string to Array
+  $someArray = json_decode($someJSON, true);
+    $member =  $someArray["members"][0]['avatar_id'];
+      $rols =  $someArray["members"][0]['role'];
+
 echo '
 <div class="headerprofileclans">
 <table class="themain" align="center" cellpadding="2" cellspacing="0" width="44%"><tbody><tr>
@@ -645,8 +640,8 @@ echo '
 	  </tr>
   <tr>
     <td align="center">'.$i.'</td>
-    <td>'.$recurso.'</td>
-    <td>'.$recurso2.'</td>
+    <td>'.$member.'</td>
+    <td>'.$rols.'</td>
   </tr>
 </table>
 </div>';} ?>
