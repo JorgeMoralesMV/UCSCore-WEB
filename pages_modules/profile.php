@@ -41,7 +41,8 @@ foreach($players as $player){
 	$th = $player['avatarObj']['townhall_level'] + 1;
 	$sc = $player['avatarObj']['score'];
 	$ava_level = $player['avatarObj']['avatar_level'];
-	$gems = $player['avatarObj']['current_gems'];
+	$gem = sprintf("%01.1f",$player['avatarObj']['current_gems']);
+	$gems = number_format($gem,0 ," "," ");
 	$alliance_id = $player['avatarObj']['alliance_id'];
 	$exp = $player['avatarObj']['experience'];
 	$headerprivileges = $player["AccountPrivileges"];
@@ -50,11 +51,14 @@ foreach($players as $player){
 $someJSON = $player["avatar"];
 // Convert JSON string to Array
 $someArray = json_decode($someJSON, true);
-  $gold = $someArray["resources"][0]["value"];
-  $elixir = $someArray["resources"][1]["value"];
-  $darkelixir = $someArray["resources"][2]["value"];
-
-}
+  $gold = sprintf("%01.1f",$someArray["resources"][0]["value"]);
+  $gold2= number_format($gold,0 ," "," ");
+  
+  $elixir = sprintf("%01.1f",$someArray["resources"][1]["value"]);
+  $elixir2 = number_format($elixir,0 ," "," ");
+  
+  $darkelixir = sprintf("%01.1f",$someArray["resources"][2]["value"]);
+  $darkelixir2 = number_format($darkelixir,0 ," "," ");
 //townhall
 if($th == 1){ $th ='<img src="images/townhall/'.$th.'.png" alt="1" width="148" height="157"><FONT SIZE=1>'.$th.'</font>';
 }
@@ -389,6 +393,7 @@ if($player["alliance_origin"] == 32000260){ $player["alliance_origin"] ='<img sr
 if($alliance_id == 0){ $alliance_id =''.text_profile_no_clan.'';
 }
 if($alliance_id <> 0){ $alliance_id =''.$player["alliance_origin"].' '.$player["alliance_name"].' - '.substr($player["description"], 0, 15).'...'.'';
+}
 echo '
   '.$headerprivileges.'
 <table class="themain" align="center" cellpadding="2" cellspacing="0" width="10%"><tbody><tr>
@@ -429,15 +434,15 @@ echo '
     <td align="left" valign="center"><br />
     <ul class="list-group">
   <li class="list-group-item">
-    <span class="badge"><?=$gold;?></span>
+    <span class="badge"><?=$gold2;?></span>
     Gold
   </li>
   <li class="list-group-item">
-    <span class="badge"><?=$elixir;?></span>
+    <span class="badge"><?=$elixir2;?></span>
     Elixir
   </li>
   <li class="list-group-item">
-    <span class="badge"><?=$darkelixir;?></span>
+    <span class="badge"><?=$darkelixir2;?></span>
     Dark Elixir
   </li>
 </ul></td>
@@ -459,12 +464,13 @@ $someJSON = $player["avatar"];
 $someArray = json_decode($someJSON, true);
   $BarbarianIMG = $someArray["units"][0]["global_id"];
   $ArcherIMG = $someArray["units"][1]["global_id"];
-  $GoblinIMG = $someArray["units"][2]["global_id"];
-  $GiantIMG = $someArray["units"][3]["global_id"];
+  $GiantIMG = $someArray["units"][2]["global_id"];
+  $GoblinIMG = $someArray["units"][3]["global_id"];
   $WallBreakerIMG = $someArray["units"][4]["global_id"];
   $BalloonIMG = $someArray["units"][5]["global_id"];
   $WizardIMG = $someArray["units"][6]["global_id"];
   $HealerIMG = $someArray["units"][7]["global_id"];
+  
   $DragonIMG = $someArray["units"][8]["global_id"];
   $PEKKAIMG = $someArray["units"][9]["global_id"];
   $MinionIMG = $someArray["units"][10]["global_id"];
@@ -473,6 +479,7 @@ $someArray = json_decode($someJSON, true);
   $GolemIMG = $someArray["units"][13]["global_id"];
   $GolemSecondaryIMG = $someArray["units"][14]["global_id"];
   $witchIMG = $someArray["units"][15]["global_id"];
+  
   $AirDefenceSeekerIMG = $someArray["units"][16]["global_id"];
   $LavaHoundIMG = $someArray["units"][17]["global_id"];
   $TrapSkeletonGroundIMG = $someArray["units"][18]["global_id"];
@@ -484,18 +491,33 @@ $someArray = json_decode($someJSON, true);
   $Prototype_4IMG = $someArray["units"][24]["global_id"];
   
 if($BarbarianIMG == 4000000){ $BarbarianIMG ='<img src="images/trops/Barbarian_info.png" alt="10" width="22" height="22">';}
-if($LavaHoundIMG == 4000022){ $LavaHoundIMG ='<img src="images/trops/Lava_Hound_info.png" alt="10" width="22" height="22">';}
+if($ArcherIMG == 4000001){ $ArcherIMG ='<img src="images/trops/Archer_info.png" alt="10" width="22" height="22">';}
+if($GoblinIMG == 4000002){ $GoblinIMG ='<img src="images/trops/Goblin_info.png" alt="10" width="22" height="22">';}
+if($GiantIMG == 4000003){ $GiantIMG ='<img src="images/trops/Giant_info.png" alt="10" width="22" height="22">';}
+if($WallBreakerIMG == 4000004){ $WallBreakerIMG ='<img src="images/trops/Wall_Breaker_info.png" alt="10" width="22" height="22">';}
+if($BalloonIMG == 4000005){ $BalloonIMG ='<img src="images/trops/Balloon_info.png" alt="10" width="22" height="22">';}
+if($WizardIMG == 4000006){ $WizardIMG ='<img src="images/trops/Wizard_info.png" alt="10" width="22" height="22">';}
+if($HealerIMG == 4000007){ $HealerIMG ='<img src="images/trops/Healer_info.png" alt="10" width="22" height="22">';}
 
+if($DragonIMG == 4000008){ $DragonIMG ='<img src="images/trops/Dragon_info.png" alt="10" width="22" height="22">';}
+if($PEKKAIMG == 4000009){ $PEKKAIMG ='<img src="images/trops/P.E.K.K.A_info.png" alt="10" width="22" height="22">';}
+if($MinionIMG == 4000010){ $MinionIMG ='<img src="images/trops/Minion_info.png" alt="10" width="22" height="22">';}
+if($HogRiderIMG == 4000011){ $HogRiderIMG ='<img src="images/trops/Hog_Rider_info.png" alt="10" width="22" height="22">';}
+if($ValkyrideIMG == 4000012){ $ValkyrideIMG ='<img src="images/trops/Valkyrie_info.png" alt="10" width="22" height="22">';}
+if($GolemIMG == 4000013){ $GolemIMG ='<img src="images/trops/Golem_info.png" alt="10" width="22" height="22">';}
+if($GolemSecondaryIMG == 4000014){ $GolemSecondaryIMG ='<img src="images/trops/Golem_info.png" alt="10" width="22" height="22">';}
+if($witchIMG == 4000015){ $witchIMG ='<img src="images/trops/Witch_info.png" alt="10" width="22" height="22">';}
   
   //Number of trops
-  $Barbarian = $someArray["units"][0]["value"];//
+  $Barbarian = $someArray["units"][0]["value"];
   $Archer = $someArray["units"][1]["value"];
-  $Goblin = $someArray["units"][2]["value"];
-  $Giant = $someArray["units"][3]["value"];
+  $Giant = $someArray["units"][2]["value"];
+  $Goblin = $someArray["units"][3]["value"];
   $WallBreaker = $someArray["units"][4]["value"];
   $Balloon = $someArray["units"][5]["value"];
   $Wizard = $someArray["units"][6]["value"];
   $Healer = $someArray["units"][7]["value"];
+  
   $Dragon = $someArray["units"][8]["value"];
   $PEKKA = $someArray["units"][9]["value"];
   $Minion = $someArray["units"][10]["value"];
@@ -504,6 +526,7 @@ if($LavaHoundIMG == 4000022){ $LavaHoundIMG ='<img src="images/trops/Lava_Hound_
   $Golem = $someArray["units"][13]["value"];
   $GolemSecondary = $someArray["units"][14]["value"];
   $witch = $someArray["units"][15]["value"];
+  
   $AirDefenceSeeker = $someArray["units"][16]["value"];
   $Prototype_1 = $someArray["units"][17]["value"];
   $TrapSkeletonGround = $someArray["units"][18]["value"];
@@ -521,8 +544,35 @@ echo '
         <div class="close"><a href="#" id="close"><img src="images/close.png"/></a></div>
         <div>
         	<h2>Troops latest created</h2>
-            <p>'.$BarbarianIMG.' '.$Barbarian.'</p>
-            <p>'.$LavaHoundIMG.' '.$Archer.'</p>
+			<table width="402" border="1">
+  <tbody>
+    <tr>
+      <td width="118">Elixir</td>
+      <td width="136">Dark Elixi</td>
+      <td width="126">Heroes</td>
+    </tr>
+    <tr>
+      <td>  <p>'.$BarbarianIMG.' '.$Barbarian.'</p>
+            <p>'.$ArcherIMG.' '.$Archer.'</p>
+			<p>'.$GiantIMG.' '.$Giant.'</p>
+            <p>'.$GoblinIMG.' '.$Goblin.'</p>
+            <p>'.$WallBreakerIMG.' '.$WallBreaker.'</p>
+            <p>'.$BalloonIMG.' '.$Balloon.'</p>
+            <p>'.$WizardIMG.' '.$Wizard.'</p>
+            <p>'.$HealerIMG.' '.$Healer.'</p></td>
+      
+	  <td>  <p>'.$DragonIMG.' '.$Dragon.'</p>
+            <p>'.$PEKKAIMG.' '.$PEKKA.'</p>
+			<p>'.$MinionIMG.' '.$Minion.'</p>
+            <p>'.$HogRiderIMG.' '.$HogRider.'</p>
+            <p>'.$ValkyrideIMG.' '.$Valkyride.'</p>
+            <p>'.$GolemIMG.' '.$Golem.'</p>
+            <p>'.$GolemSecondaryIMG.' '.$GolemSecondary.'</p>
+            <p>'.$witchIMG.' '.$witch.'</p></td>
+      <td>&nbsp;</td>
+    </tr>
+  </tbody>
+</table>
         </div>
     </div>
 </div>'; }?>

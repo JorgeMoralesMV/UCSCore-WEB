@@ -2365,7 +2365,9 @@ caption {
  }
    .footerprofileclan {
  background-color: #ffffff;
- height: 350px;
+ min-height: 150px;
+ height:auto !important;
+ height: 150px;
  width: 1000px;
  margin:0 auto;
  margin-bottom: 30px;
@@ -2380,7 +2382,7 @@ caption {
  }
   .footerprofile {
  background-color: #ffffff;
- height: 350px;
+ height: 530px;
  width: 1000px;
  margin:0 auto;
  margin-bottom: 30px;

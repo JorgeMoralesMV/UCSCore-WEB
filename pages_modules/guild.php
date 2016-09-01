@@ -630,14 +630,19 @@ echo '
 ';} ?>
     <div class="footerprofileclan">
 <table class="table table-striped table-hover" align="center" cellpadding="2" cellspacing="0" width="43%">
-  <tr>
-    <td colspan="3" align="center" class="topp2">Members</td>
-  </tr>
+<thead>
     <tr>
-    <td width="61" align="center" class="topp2"><strong>#</strong></td>
-    <td width="326" class="topp2"><strong>Name</strong></td>
-    <td width="117" class="topp2"><strong>Role</strong></td>
-	  </tr>
+    <td colspan="5" align="center">Members</td>
+      </tr>
+    <tr>
+    <td width="26" align="center"><strong>#</strong></td>
+    <td width="61" align="center"><strong>Score</strong></td>
+    <td width="73" align="center"><strong>Level</strong></td>
+    <td width="273" align="left"><strong>Name</strong></td>
+    <td width="63" align="center"><strong>Role</strong></td>
+   </tr>
+   </thead>
+  <tbody>
 <?php
 $someJSON = $clan["data"];
 $array = json_decode($someJSON, true);
@@ -663,11 +668,27 @@ if($role == 2){ $role ='Leader';}
 		);
 foreach($players as $player){
 		$avatar_name = $player['clanData']['avatar_name'];
+		$avatar_level = $player['clanData']['avatar_level'];
+//score
+$lt=array(0,400,500,600,800,1000,1200,1400,1600,1800,2000,2200,2400,2600,2800,3000,3200,3500,3800,4100,4400,4700,5000,9999);
+$lt2=array(399,499,599,799,999,1199,1399,1599,1799,1999,2199,2399,2599,2799,2999,3199,3499,3799,4099,4399,4699,4999,99999);
+
+$legend = count($lt);
+for ($x = 0; $x < $legend; $x++)
+{
+    if (($player ['clanData']['score'] >= $lt[$x]) && ($player ['avatarObj']['clanData'] < $lt2[$x]))
+    {
+        $y = $x;
+        $score = '<img src="images/'.$y.'.png" alt="10" width="42" height="42">';
+    }
+}
 }
     echo '<tr>
-    <td align="center">'.$i++.'</td>
-    <td><a href="index.php?page_id=profile&id='.$avatar_id.'">'.$avatar_name.'</a></td>
-    <td>'.$role.'</td>
+    <td align="center"><div id="caja">'.$i++.'</div></td>
+	  <td align="center" valign="bottom">'.$score.'</td>
+	<td align="center"><div id="cajalvl">'.$avatar_level.'</div></td>
+    <td align="left"><a href="index.php?page_id=profile&id='.$avatar_id.'">'.$avatar_name.'</a></td>
+    <td align="center">'.$role.'</td>
   </tr>';
 }; ?>
 </table>

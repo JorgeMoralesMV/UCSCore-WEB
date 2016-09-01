@@ -7,7 +7,6 @@
     require ("language_config.php"); 
     $pagina = new PHPPaging;
 
-$key = "cu4n70_m4s_c0mpl3j0_m3j05";
 $core['version'] = crypt_it($engine,'','1'); 
 ?>
 <!DOCTYPE html>
