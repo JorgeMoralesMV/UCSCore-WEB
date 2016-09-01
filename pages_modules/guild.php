@@ -15,7 +15,7 @@ $sql=mysql_query("SELECT * FROM clan WHERE ClanId=".$_GET['id']."");
 			"dataObj" => $dataObj,
 		);
 	}
-foreach($clans as $clan){
+foreach (@(array) $clans as $clan) {
 	$clanname = $clan['dataObj']['alliance_name'];
 	$sc = $clan['dataObj']['score'];
 	$reqsc = $clan['dataObj']['required_score'];
@@ -573,6 +573,11 @@ if($allioriginbadge == 32000258){ $allioriginbadge ='<img src="https://clashofcl
 if($allioriginbadge == 32000259){ $allioriginbadge ='<img src="https://clashofclans.com/img/flags/Zambia.png" alt="10" width="22" height="22">';}
 if($allioriginbadge == 32000260){ $allioriginbadge ='<img src="https://clashofclans.com/img/flags/Zimbabwe.png" alt="10" width="22" height="22">';}
 
+$someJSON = $clan["data"];
+  // Convert JSON string to Array
+  $someArray = json_decode($someJSON, true);
+  $membersinclan =  count($someArray["members"]);  
+
 echo '
 <div class="headerprofileclans">
 <table class="themain" align="center" cellpadding="2" cellspacing="0" width="44%"><tbody><tr>
@@ -609,14 +614,14 @@ echo '
 </table></div></td>
         </tr>
   <tr class="trhover">
-    <td width="96" align="left"><div class="profiletitle">Frecuency:</div></td>
-    <td width="256" align="left"><div class="profileresult">'.$war_frec.'</div></td>
-    <td width="128" align="center"><div class="profiletitle">Alliance Experience:</div></td>
-    <td width="97" align="center"><div class="profileresult">'.$alliexp.'</div></td>
+    <td width="96" align="left"><div class="profiletitle">Members:</div></td>
+    <td width="256" align="left"><div class="profileresult">'.$membersinclan.'</div></td>
+    <td width="128" align="center"><div class="profiletitle">Type:</div></td>
+    <td width="97" align="center"><div class="profileresult">'.$alliance_typ.'</div></td>
   </tr>
   <tr class="trhover">
-    <td align="left"><div class="profiletitle">Type:</div></td>
-    <td align="left"><div class="profileresult">'.$alliance_typ.'</div></td>
+    <td align="left"><div class="profiletitle">Frecuency:</div></td>
+    <td align="left"><div class="profileresult">'.$war_frec.'</div></td>
     <td align="center"><div class="profiletitle">Required Score:</div></td>
     <td align="center"><div class="profileresult">'.$reqsc.'</div></td>
     </tr>
@@ -628,28 +633,42 @@ echo '
   <tr>
     <td colspan="3" align="center" class="topp2">Members</td>
   </tr>
-<?php
-  $someJSON = $clan["data"];
-  // Convert JSON string to Array
-  $someArray = json_decode($someJSON, true);
-    $member =  $someArray["members"][3]['avatar_id'];
-      $rols =  $someArray["members"][3]['role'];
-	  
-if($rols == 0){ $rols ='Normal Member';}
-if($rols == 1){ $rols ='Normal Member';}
-if($rols == 2){ $rols ='Leader';}
-
-echo '
-  <tr>
+    <tr>
     <td width="61" align="center" class="topp2"><strong>#</strong></td>
     <td width="326" class="topp2"><strong>Name</strong></td>
     <td width="117" class="topp2"><strong>Role</strong></td>
 	  </tr>
-  <tr>
-    <td align="center">'.$i.'</td>
-    <td>'.$member.'</td>
-    <td>'.$rols.'</td>
-  </tr>
-'; ?>
+<?php
+$someJSON = $clan["data"];
+$array = json_decode($someJSON, true);
+
+foreach (@(array)$array['members'] as $obj){
+        $avatar_id = $obj['avatar_id'];
+        $role = $obj['role'];
+		
+if($role == 0){ $role ='Normal Member';}
+if($role == 1){ $role ='Normal Member';}
+if($role == 2){ $role ='Leader';}
+
+        $playername = $avatar_id;	
+		$playerClan=mysql_query("SELECT * FROM player WHERE player.PlayerId=" . $playername."");
+        while($playerClanRow = mysql_fetch_array($playerClan)){ 
+		
+		$clanData = json_decode($playerClanRow['Avatar'], true);
+		$playerclan = $playerClanRow['Avatar'];	
+		}
+		
+		$players[] = array(
+			"clanData" => $clanData,
+		);
+foreach($players as $player){
+		$avatar_name = $player['clanData']['avatar_name'];
+}
+    echo '<tr>
+    <td align="center">'.$i++.'</td>
+    <td><a href="index.php?page_id=profile&id='.$avatar_id.'">'.$avatar_name.'</a></td>
+    <td>'.$role.'</td>
+  </tr>';
+}; ?>
 </table>
 </div>

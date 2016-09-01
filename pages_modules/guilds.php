@@ -10,7 +10,7 @@
       <th width='107' align='center' valign='top' class='topp2'><strong>Badge</strong></th>
       <th width='264' align='center' valign='top' class='topp2'><strong>Name</strong></th>
       <th width='215' align='center' valign='top' class='topp2'><strong>Experience</strong></th>
-	  <th width='266' align='center' valign='top' class='topp2'><strong>Country</strong></th>
+	  <th width='266' align='center' valign='top' class='topp2'><strong>Members</strong></th>
       <th width='215' align='center' valign='top' class='topp2'><strong>Thropies</strong></th>
    </tr>
    </thead>
@@ -308,6 +308,11 @@ if($alliorigin == 32000257){ $alliorigin ='Western Sahara';}
 if($alliorigin == 32000258){ $alliorigin ='Yemen';}
 if($alliorigin == 32000259){ $alliorigin ='Zambia';}
 if($alliorigin == 32000260){ $alliorigin ='Zimbabwe';}
+
+  $someJSON = $clan["data"];
+  // Convert JSON string to Array
+  $someArray = json_decode($someJSON, true);
+    $membersinclan =  count($someArray["members"]);
 echo "<tr>
       <td align='center'><div id='caja'>".$i."</div></td>
       <td align='center' valign='center'><div style='background-image: url(../images/badge/1526726735.png);height: 42px;
@@ -333,7 +338,7 @@ echo "<tr>
  border-radius: 10px 10px 10px 10px;'>".$allilvl."</div></td>
       <td align='center' valign='center'><a href='index.php?page_id=guild&id=".$clan["ClanId"]."' title='".$clanname."'>".$clanname."</a></td>
 	  <td align='center' valign='center'><div class='alliancerankingbadge'>".$alliexp."</div></td>
-	  <td width='215' align='center' valign='center'><div class='alliancerankingbadge'>".$alliorigin."</div></td>
+	  <td width='215' align='center' valign='center'><div class='alliancerankingbadge'>".$membersinclan."/50</div></td>
 	  <td align='center'><div id='trophy'>".$sc."<span class='badgetrophy'></span></div></td>
     </tr>";
 	}
