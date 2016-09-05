@@ -1,17 +1,17 @@
 <div class="panel panel-primary">
   <div class="panel-heading">
-    <h3 class="panel-title">Administrator of Server</h3>
+    <h3 class="panel-title"><?php echo text_gamemaster_ranking_name; ?></h3>
   </div>
   <div class="panel-body">
 <table class='table table-striped table-hover' align="center" cellpadding='2' cellspacing='0' width='54%'>
 <thead>
     <tr>
       <th width='53' align='center' valign='top' class='topp2'><strong>#</strong></th>
-      <th width='426' align='center' valign='top' class='topp2'><strong>Liga</strong></th>
-      <th width='321' align='center' valign='top' class='topp2'>Nivel</th>
-      <th width='321' align='center' valign='top' class='topp2'>Name</th>
-      <th width='321' align='center' valign='top' class='topp2'><strong>Level</strong></th>
-	  <th width='321' align='center' valign='top' class='topp2'><strong>LatestUpdate</strong></th>
+      <th width='426' align='center' valign='top' class='topp2'><strong><?php echo text_gamemaster_league; ?></strong></th>
+      <th width='321' align='center' valign='top' class='topp2'><?php echo text_gamemaster_level; ?></th>
+      <th width='321' align='center' valign='top' class='topp2'><?php echo text_gamemaster_name; ?></th>
+      <th width='321' align='center' valign='top' class='topp2'><strong><?php echo text_gamemaster_category; ?></strong></th>
+	  <th width='321' align='center' valign='top' class='topp2'><strong><?php echo text_gamemaster_letestupdate; ?></strong></th>
    </tr>
    </thead>
   <tbody>

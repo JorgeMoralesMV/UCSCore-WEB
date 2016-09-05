@@ -1,6 +1,6 @@
 <div class="panel panel-primary">
   <div class="panel-heading">
-    <h3 class="panel-title">Status</h3>
+    <h3 class="panel-title"><?php echo text_playersonline_status_title; ?></h3>
   </div>
   <div class="panel-body">
   <table class='themain' align="center" cellpadding='2' cellspacing='0' width='54%'>
@@ -24,9 +24,9 @@ $moonline = mysql_query("SELECT * FROM player WHERE AccountPrivileges > 0 AND Ac
 $mosonline = mysql_num_rows($moonline);
 $load = substr(100 * $online / 150, 0, 5);
 ?>
-      <th width='202' align='center' valign='top' class='topp2'><strong>Administrators</strong></th>
-      <th width='230' align='center' valign='top' class='topp2'><strong>Game Masters</strong></th>
-      <th width='190' align='center' valign='top' class='topp2'><strong>Players</strong></th>
+      <th width='202' align='center' valign='top' class='topp2'><strong><?php echo text_playersonline_administrators; ?></strong></th>
+      <th width='230' align='center' valign='top' class='topp2'><strong><?php echo text_playersonline_gamemasters; ?></strong></th>
+      <th width='190' align='center' valign='top' class='topp2'><strong><?php echo text_playersonline_players; ?></strong></th>
        </thead>
   <tbody>
     <tr>
@@ -41,21 +41,21 @@ $load = substr(100 * $online / 150, 0, 5);
 
 <div class="panel panel-primary">
   <div class="panel-heading">
-    <h3 class="panel-title">Players Online</h3>
+    <h3 class="panel-title"><?php echo text_playersonline_online_title; ?></h3>
   </div>
   <div class="panel-body">
 <table class='table table-striped table-hover' align="center" cellpadding='2' cellspacing='0' width='54%'>
 <thead>
     <tr>
-      <th width='42' align='center' valign='top' class='topp2'><strong><?php echo text_ranking_num; ?></strong></th>
-      <th width='69' align='center' valign='top' class='topp2'><strong>Liga</strong></th>
-      <th width='60' align='center' valign='top' class='topp2'><strong><?php echo text_ranking_level; ?></strong></th>
-      <th width='91' align='center' valign='top' class='topp2'><strong><?php echo text_ranking_name; ?></strong></th>
-      <th width='109' align='center' valign='top' class='topp2'><strong><?php echo text_ranking_experience; ?></strong></th>
-	  <th width='54' align='center' valign='top' class='topp2'><strong><?php echo text_ranking_status; ?></strong></th>
-      <th width='130' align='center' valign='top' class='topp2'><strong><?php echo text_ranking_accountprivileges; ?></strong></th>
-      <th width='85' align='center' valign='top' class='topp2'><strong><?php echo text_ranking_gems; ?></strong></th>
-      <th width='146' align='center' valign='top' class='topp2'><strong><?php echo text_ranking_trophies; ?></strong></th>
+      <th width='42' align='center' valign='top' class='topp2'><strong>#</strong></th>
+      <th width='69' align='center' valign='top' class='topp2'><strong><?php echo text_playersonline_lague; ?></strong></th>
+      <th width='60' align='center' valign='top' class='topp2'><strong><?php echo text_playersonline_level; ?></strong></th>
+      <th width='91' align='center' valign='top' class='topp2'><strong><?php echo text_playersonline_name; ?></strong></th>
+      <th width='109' align='center' valign='top' class='topp2'><strong><?php echo text_playersonline_experience; ?></strong></th>
+	  <th width='54' align='center' valign='top' class='topp2'><strong><?php echo text_playersonline_status; ?></strong></th>
+      <th width='130' align='center' valign='top' class='topp2'><strong><?php echo text_playersonline_accountprivileges; ?></strong></th>
+      <th width='85' align='center' valign='top' class='topp2'><strong><?php echo text_playersonline_gems; ?></strong></th>
+      <th width='146' align='center' valign='top' class='topp2'><strong><?php echo text_playersonline_trophies; ?></strong></th>
       </tr>
        </thead>
   <tbody>

@@ -1,9 +1,9 @@
 <?PHP
 /////////////////////Configs DATA BASE////////////////////
-$servername="sql104.eshost.com.ar";
-$username="eshos_18807940";
-$password="muccarmen2";
-$dbname="eshos_18807940_ucsdb";
+$servername="localhost";
+$username="root";
+$password="123456";
+$dbname="ucsdb";
 mysql_connect($servername, $username, $password);
 mysql_select_db($dbname);
 /////////////////////Configs Page Info////////////////////

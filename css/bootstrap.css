@@ -2365,9 +2365,9 @@ caption {
  }
    .footerprofileclan {
  background-color: #ffffff;
- min-height: 150px;
+ min-height: 200px;
  height:auto !important;
- height: 150px;
+ height: 200px;
  width: 1000px;
  margin:0 auto;
  margin-bottom: 30px;
@@ -2382,7 +2382,9 @@ caption {
  }
   .footerprofile {
  background-color: #ffffff;
- height: 530px;
+ min-height: 150px;
+ height:auto !important;
+ height: 150px;
  width: 1000px;
  margin:0 auto;
  margin-bottom: 30px;
@@ -6054,11 +6056,10 @@ button.list-group-item-danger.active:focus {
 }
 .panel-footer {
   width: 100%;
-  padding: 73px 15px;
+  height:200px;
+  padding-top:50px;
   background-color: #000;
   border-top: 1px solid #000;
-  border-bottom-right-radius: -1;
-  border-bottom-left-radius: -1;
 }
 .panel > .list-group,
 .panel > .panel-collapse > .list-group {

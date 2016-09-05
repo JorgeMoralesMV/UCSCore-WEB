@@ -1,17 +1,17 @@
 <div class="panel panel-primary">
   <div class="panel-heading">
-    <h3 class="panel-title">Ranking Clans</h3>
+    <h3 class="panel-title"><?php echo text_guilds_ranking_name; ?></h3>
   </div>
   <div class="panel-body">
 <table class='table table-striped table-hover' align="center" cellpadding='2' cellspacing='0' width='10%'>
 <thead>
     <tr>
       <th width='85' align='center' valign='top' class='topp2'><strong>#</strong></th>
-      <th width='107' align='center' valign='top' class='topp2'><strong>Badge</strong></th>
-      <th width='264' align='center' valign='top' class='topp2'><strong>Name</strong></th>
-      <th width='215' align='center' valign='top' class='topp2'><strong>Experience</strong></th>
-	  <th width='266' align='center' valign='top' class='topp2'><strong>Members</strong></th>
-      <th width='215' align='center' valign='top' class='topp2'><strong>Thropies</strong></th>
+      <th width='107' align='center' valign='top' class='topp2'><strong><?php echo text_guilds_badge; ?></strong></th>
+      <th width='264' align='center' valign='top' class='topp2'><strong><?php echo text_guilds_name; ?></strong></th>
+      <th width='215' align='center' valign='top' class='topp2'><strong><?php echo text_guilds_experience; ?></strong></th>
+	  <th width='266' align='center' valign='top' class='topp2'><strong><?php echo text_guilds_membersinclan; ?></strong></th>
+      <th width='215' align='center' valign='top' class='topp2'><strong><?php echo text_guilds_trophies; ?></strong></th>
    </tr>
    </thead>
   <tbody>

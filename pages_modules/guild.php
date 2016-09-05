@@ -29,7 +29,6 @@ foreach (@(array) $clans as $clan) {
 	$allioriginbadge = $clan['dataObj']['alliance_origin'];
 	$alliexp = $clan['dataObj']['alliance_experience'];
 	$allilvl = $clan['dataObj']['alliance_level'];
-	$golds = $clan['dataObj']['members'];
 	$i = $i+1;
 
 
@@ -628,18 +627,66 @@ echo '
   </table></table>
 </div>
 ';} ?>
-    <div class="footerprofileclan">
+    <div align="center" class="footerprofileclan">
+    <div id="popup" style="display: none;">
+    <div class="content-popup">
+        <div class="close"><a href="#" id="close"><img src="images/close.png"/></a></div>
+        <div>
 <table class="table table-striped table-hover" align="center" cellpadding="2" cellspacing="0" width="43%">
 <thead>
     <tr>
-    <td colspan="5" align="center">Members</td>
+    <td colspan="5" align="center"><?php echo text_guild_members; ?></td>
+      </tr>
+    <tr>
+    <td width="37" align="center"><strong>#</strong></td>
+    <td width="179" align="left"><strong><?php echo text_guild_name; ?></strong></td>
+    <td width="288" align="center"><strong><?php echo text_guild_messages; ?></strong></td>
+   </tr>
+   </thead>
+  <tbody>
+<?php
+$someJSON = $clan["data"];
+$array = json_decode($someJSON, true);
+
+foreach (@(array)$array['chatMessages'] as $obj){
+	$message_from = $obj['sender_name'];
+	$sender_role = $obj['sender_role'];
+	$type = $obj['type'];
+	$sender_id = $obj['sender_id'];
+	$message = $obj['message'];
+	
+if($type == 2){ $type ='';}
+if($type == 4){ $type ='Request Trops';}
+
+if($sender_role == 0){ $sender_role ='Normal Member';}
+if($sender_role == 1){ $sender_role ='Normal Member';}
+if($sender_role == -1){ $sender_role ='Ex-Member';}
+if($sender_role == 2){ $sender_role ='Leader';}
+
+    echo '<tr>
+    <td align="center"><div id="caja">'.$i++.'</div></td>
+    <td align="left"><a href="index.php?page_id=profile&id='.$sender_id.'">'.$message_from.'</a></br><div id="alliancetextrank">&nbsp;'.$sender_role.'</div></td>
+    <td align="center">'.$type.' '.$message.'</td>
+  </tr>';
+}; ?>
+</table>
+        </div>
+    </div>
+</div>
+<div class="popup-overlay"></div>
+        <a href="#" class="btn btn-primary" id="open"><?php echo text_guild_view_messages; ?></a>
+</br>
+<table class="table table-striped table-hover" align="center" cellpadding="2" cellspacing="0" width="43%">
+<thead>
+    <tr>
+    <td colspan="5" align="center"><?php echo text_guild_members; ?></td>
       </tr>
     <tr>
     <td width="26" align="center"><strong>#</strong></td>
-    <td width="61" align="center"><strong>Score</strong></td>
-    <td width="73" align="center"><strong>Level</strong></td>
-    <td width="273" align="left"><strong>Name</strong></td>
-    <td width="63" align="center"><strong>Role</strong></td>
+    <td width="61" align="center"><strong><?php echo text_guild_score; ?></strong></td>
+    <td width="73" align="center"><strong><?php echo text_guild_level; ?></strong></td>
+    <td width="273" align="left"><strong><?php echo text_guild_name; ?></strong></td>
+    <td width="63" align="center"><strong><?php echo text_guild_role; ?></strong></td>
    </tr>
    </thead>
   <tbody>
@@ -666,7 +713,7 @@ if($role == 2){ $role ='Leader';}
 		$players[] = array(
 			"clanData" => $clanData,
 		);
-foreach($players as $player){
+foreach(@(array)$players as $player){
 		$avatar_name = $player['clanData']['avatar_name'];
 		$avatar_level = $player['clanData']['avatar_level'];
 //score
@@ -676,7 +723,7 @@ $lt2=array(399,499,599,799,999,1199,1399,1599,1799,1999,2199,2399,2599,2799,2999
 $legend = count($lt);
 for ($x = 0; $x < $legend; $x++)
 {
-    if (($player ['clanData']['score'] >= $lt[$x]) && ($player ['avatarObj']['clanData'] < $lt2[$x]))
+    if (($player ['clanData']['score'] >= $lt[$x]) && ($player ['clanData']['score'] < $lt2[$x]))
     {
         $y = $x;
         $score = '<img src="images/'.$y.'.png" alt="10" width="42" height="42">';

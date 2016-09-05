@@ -1,10 +1,17 @@
-<table class="themain" align="center" cellpadding="2" cellspacing="0" width="80%"><tbody><tr>
-  <td>
-    <table border="0" cellpadding="3" cellspacing="1" width="100%">
-      <tbody><tr>
-        <td width="7%" align="center" class="topp1">#</td>
-        <td class="topp2" align="center">Names of Server</td><td class="topp3" align="center">Status</td>
-      </tr>
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h3 class="panel-title"><?php echo text_statistics_status; ?></h3>
+  </div>
+  <div class="panel-body">
+<table class="table table-striped table-hover " cellpadding="2" cellspacing="0" width="80%">
+  <thead>
+    <tr>
+      <th>#</th>
+        <th class="topp2" align="center"><?php echo text_statistics_name_of_server; ?></th>
+        <th class="topp3" align="center"><?php echo text_statistics_status_server; ?></th>
+    </tr>
+  </thead>
+  <tbody>
 <?PHP
 if ($fp=@fsockopen($ipserver1,'9339',$ERROR_NO,$ERROR_STR,(float)0.5)) 
 	{ 
@@ -26,24 +33,30 @@ else
 	} 
 	echo "
 <tr>
-<td class='trhover' align='center'>".@++$count."</td>
-<td class='trhover' align='center'>$NameOfServer1:</td>		<td class='trhover' align='center'>$serstats</td>
+<td align='center'>".@++$count."</td>
+<td align='center'>$NameOfServer1:</td>
+<td class='trhover' align='center'>$serstats</td>
 </tr>
 <tr>
-<td class='trhover' align='center'>".++$count."</td>
-<td class='trhover' align='center'>$NameOfServer2:</td>		<td class='trhover' align='center'>$serstats1</td>
+<td align='center'>".++$count."</td>
+<td align='center'>$NameOfServer2:</td>
+<td class='trhover' align='center'>$serstats1</td>
 </tr>";
 ?>
-</table>
-</table>
-<br />
-<table class="themain" align="center" cellpadding="2" cellspacing="0" width="80%"><tbody><tr><td>
-    <table border="0" cellpadding="3" cellspacing="1" width="100%">
-      <tbody><tr>
+  </tbody>
+</table> 
+</div>
+</div>
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h3 class="panel-title"><?php echo text_statistics_title; ?></h3>
+  </div>
+  <div class="panel-body">
+<table class="table table-striped table-hover "cellpadding="2" cellspacing="0" width="80%">
+  <thead>
 
-        <td width="7%" align="center" class="topp1">#</td>
-        <td class="topp2" align="center">Statistics of Server</td><td class="topp3" align="center">Status</td>
-      </tr>
+  </thead>
+  <tbody>
 <?PHP
 $date = "'".date("Y-m-d H:m:s")."'"; // getting date
 $date1 = "'".date('Y-m-d H:m:s', strtotime('-60 minutes'))."'"; // Calculating online players  Check database time
@@ -94,5 +107,7 @@ echo "<tr>
 <td class='trhover' align='center'>Total Players Online:</td>	<td class='trhover' align='center'>$online /<span style='color:#F00;'>$totalacc[0]</span></td>
 </tr>";
 ?>
-</table>
-</table>
+  </tbody>
+</table> 
+</div>
+</div>

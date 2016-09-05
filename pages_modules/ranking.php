@@ -1,13 +1,13 @@
 <div class="panel panel-primary">
   <div class="panel-heading">
-    <h3 class="panel-title">Ranking Players BY level</h3>
+    <h3 class="panel-title"><?php echo text_title_ranking_name; ?></h3>
   </div>
   <div class="panel-body">
 <table class='table table-striped table-hover' align="center" cellpadding='2' cellspacing='0' width='10%'>
 <thead>
     <tr>
       <th width='42' align='center' valign='top' class='topp2'><strong><?php echo text_ranking_num; ?></strong></th>
-      <th width='69' align='center' valign='top' class='topp2'><strong>Liga</strong></th>
+      <th width='69' align='center' valign='top' class='topp2'><strong><?php echo text_ranking_league; ?></strong></th>
       <th width='60' align='center' valign='top' class='topp2'><strong><?php echo text_ranking_level; ?></strong></th>
       <th width='91' align='center' valign='top' class='topp2'><strong><?php echo text_ranking_name; ?></strong></th>
       <th width='109' align='center' valign='top' class='topp2'><strong><?php echo text_ranking_experience; ?></strong></th>
@@ -19,7 +19,7 @@
    </thead>
   <tbody>
 <?PHP
-$sql1=mysql_query("SELECT * FROM player");//cambiar nombre de la tabla de busqueda
+$sql1=mysql_query("SELECT * FROM `player`");//cambiar nombre de la tabla de busqueda
     while($row = mysql_fetch_array($sql1)){ 
 		$avatar = $row["Avatar"];
 		$avatarObj = json_decode($row["Avatar"], true);
@@ -33,7 +33,8 @@ foreach($players1 as $player1){
 	$sc = $player1['avatarObj']['score'];
 
 }
-$pagina->agregarConsulta("SELECT * FROM `player` ORDER BY ".$player1['avatarObj']['avatar_level']." ASC");
+//$pagina->agregarConsulta("SELECT * FROM `player` ORDER BY ".$player1['avatarObj']['avatar_level']." ASC");
+$pagina->agregarConsulta("SELECT * FROM `player`");
 $pagina->ejecutar();
         $i = 0;
 		while($row=$pagina->fetchResultado()){
@@ -73,7 +74,8 @@ foreach (@(array) $players as $player) {
 	$th = $player['avatarObj']['townhall_level'] + 1;
 	$sc = $player['avatarObj']['score'];
 	$ava_level = $player['avatarObj']['avatar_level'];
-	$gems = $player['avatarObj']['current_gems'];
+	$gem = sprintf("%01.1f",$player['avatarObj']['current_gems']);
+	$gems = number_format($gem,0 ," "," ");
 	$alliance_id = $player['avatarObj']['alliance_id'];
 	$exp = $player['avatarObj']['experience'];
 	$player_region = $player['avatarObj']['region'];

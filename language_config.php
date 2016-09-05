@@ -21,7 +21,7 @@ if(isSet($_GET['lang'])){
 }else if(isSet($_COOKIE['lang'])){
     $lang = $_COOKIE['lang'];
 }else{
-    $lang = 'es';
+    $lang = 'en';
 }
 
 switch ($lang) {
@@ -40,7 +40,7 @@ switch ($lang) {
 |  Language Default                          |
 \*------------------------------------------*/
   default:
-  $lang_file = 'spanish.php';
+  $lang_file = 'english.php';
 
 }
 /*------------------------------------------*\
